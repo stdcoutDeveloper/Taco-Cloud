@@ -22,7 +22,11 @@ import tacos.domain.TacoOrder;
 @RequestMapping("/design")
 @SessionAttributes("tacoOrder")
 public class DesignTacoController {
-
+	
+	/**
+	 * Populate the Model before handling request (before Controller is called)
+	 * @param model
+	 */
 	@ModelAttribute
 	public void addIngredientsToModel(Model model) {
 		List<Ingredient> ingredients = Arrays.asList(
@@ -44,12 +48,12 @@ public class DesignTacoController {
 			}
 	}
 	
-	@ModelAttribute(name = "tacoOrder")
+	@ModelAttribute("tacoOrder")
 	public TacoOrder order() {
 		return new TacoOrder();
 	}
 
-	@ModelAttribute(name = "taco")
+	@ModelAttribute("taco")
 	public Taco taco() {
 		return new Taco();
 	}
