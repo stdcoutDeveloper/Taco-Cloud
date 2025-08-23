@@ -53,6 +53,12 @@ public class DesignTacoController {
 		return new TacoOrder();
 	}
 
+	/**
+	 * Bind to "taco" object on the form
+	 * <form method="POST" th:object="${taco}">
+	 * The form has a non-null object to display (have a blank slate)
+	 * @return
+	 */
 	@ModelAttribute("taco")
 	public Taco taco() {
 		return new Taco();
