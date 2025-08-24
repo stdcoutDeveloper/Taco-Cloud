@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
 
-import tacos.controller.HomeController;
+import tacos.web.HomeController;
 
 //Specify the controller to test
 @WebMvcTest(HomeController.class)
@@ -29,4 +29,5 @@ public class HomeControllerTest {
 	        .andExpect(content().string(
 	            containsString("Welcome to...")));
 	}
+	
 }
