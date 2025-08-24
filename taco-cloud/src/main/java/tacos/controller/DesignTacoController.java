@@ -21,6 +21,7 @@ import tacos.domain.TacoOrder;
 @Slf4j
 @Controller
 @RequestMapping("/design")
+// "tacoOrder" should be maintained in session so that it can span multiple requests
 @SessionAttributes("tacoOrder")
 public class DesignTacoController {
 	
@@ -49,6 +50,10 @@ public class DesignTacoController {
 			}
 	}
 	
+	/**
+	 * Initialize "tacoOrder" object in session
+	 * @return
+	 */
 	@ModelAttribute("tacoOrder")
 	public TacoOrder order() {
 		return new TacoOrder();
