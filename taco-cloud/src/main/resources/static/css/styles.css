@@ -27,3 +27,25 @@ div.ingredient-group {
 span.validationError {
 	color: red;
 }
+
+body {
+    background-color: #f8f9fa;
+}
+
+.hero {
+    margin-top: 80px;
+}
+
+.hero img {
+    max-height: 200px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    color: #343a40;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}

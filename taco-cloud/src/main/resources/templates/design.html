@@ -4,16 +4,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
   <head>
+	<meta charset="UTF-8">
     <title>Taco Cloud</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}" />
+	<!-- Boostrap 5 -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
   </head>
 
-  <body>
-    <h1>Design your taco!</h1>
-    <img th:src="@{/images/TacoCloud.png}"/>
-
+  <body class="container mt-5">
+    <h1 class="mb-4 text-center">Design your taco!</h1>
+	
+	<div class="text-center mb-5">
+    	<img th:src="@{/images/TacoCloud.png}" class="img-fluid" alt="Taco Cloud Logo" style="max-height: 200px;" />
+	</div>
+	
 <!-- tag::formTag[] -->
-    <form method="POST" th:object="${taco}">
+    <form method="POST" th:object="${taco}" class="mb-5">
     <!-- end::all[] -->
 
     <!--<span class="validationError"
@@ -21,71 +27,89 @@
           th:errors="*{ingredients}">Ingredient Error</span>-->
 
     <!-- tag::all[] -->
-    <div class="grid">
+    <div class="row">
 <!-- end::formTag[] -->
 <!-- end::head[] -->
-      <div class="ingredient-group" id="wraps">
+      <div class="col-md-6 mb-4" id="wraps">
+		<div class="card h-100">
+			<div class="card-body">
 <!-- tag::designateWrap[] -->
-      <h3>Designate your wrap:</h3>
-      <div th:each="ingredient : ${wrap}">
-		<!-- *{...}: access the field of "form backing object" in th:object -->
-        <input th:field="*{ingredients}" type="checkbox" 
-               th:value="${ingredient.id}"/>
-        <span th:text="${ingredient.name}">INGREDIENT</span><br/>
+				<h5 class="card-title">Designate your wrap:</h5>
+		        <div th:each="ingredient : ${wrap}" class="form-check">
+				<!-- *{...}: access the field of "form backing object" in th:object -->
+			        <input class="form-check-input" th:field="*{ingredients}" type="checkbox" 
+			               th:value="${ingredient.id}" id="${ingredient.id}" />
+				    <label class="form-check-label" th:for="${ingredient.id}" th:text="${ingredient.name}">INGREDIENT</label>
+				</div>
+            </div>
+        </div>
       </div>
 <!-- end::designateWrap[] -->
+
+	  <div class="col-md-6 mb-4" id="proteins">
+		<div class="card h-100">
+			<div class="card-body">
+				<h5 class="card-title">Pick your protein:</h5>
+		        <div th:each="ingredient : ${protein}" class="form-check">
+			        <input class="form-check-input" th:field="*{ingredients}" type="checkbox" 
+			               th:value="${ingredient.id}" id="${ingredient.id}" />
+				    <label class="form-check-label" th:for="${ingredient.id}" th:text="${ingredient.name}">INGREDIENT</label>
+				</div>
+            </div>
+        </div>
+      </div>
+	  
+	  <div class="col-md-6 mb-4" id="cheeses">
+  		<div class="card h-100">
+  			<div class="card-body">
+  				<h5 class="card-title">Choose your cheese:</h5>
+  		        <div th:each="ingredient : ${cheese}" class="form-check">
+  			        <input class="form-check-input" th:field="*{ingredients}" type="checkbox" 
+  			               th:value="${ingredient.id}" id="${ingredient.id}" />
+  				    <label class="form-check-label" th:for="${ingredient.id}" th:text="${ingredient.name}">INGREDIENT</label>
+  				</div>
+            </div>
+         </div>
+      </div>
+	  
+	  <div class="col-md-6 mb-4" id="veggies">
+		<div class="card h-100">
+			<div class="card-body">
+				<h5 class="card-title">Determine your veggies:</h5>
+		        <div th:each="ingredient : ${veggies}" class="form-check">
+			        <input class="form-check-input" th:field="*{ingredients}" type="checkbox" 
+			               th:value="${ingredient.id}" id="${ingredient.id}" />
+				    <label class="form-check-label" th:for="${ingredient.id}" th:text="${ingredient.name}">INGREDIENT</label>
+				</div>
+          </div>
+       </div>
+      </div>
+	  
+	  <div class="col-md-6 mb-4" id="sauces">
+  		<div class="card h-100">
+  			<div class="card-body">
+  				<h5 class="card-title">Select your sauce:</h5>
+  		        <div th:each="ingredient : ${sauce}" class="form-check">
+  			        <input class="form-check-input" th:field="*{ingredients}" type="checkbox" 
+  			               th:value="${ingredient.id}" id="${ingredient.id}" />
+  				    <label class="form-check-label" th:for="${ingredient.id}" th:text="${ingredient.name}">INGREDIENT</label>
+  				</div>
+            </div>
+        </div>
       </div>
 
-	  <div class="ingredient-group" id="proteins">
-      <h3>Pick your protein:</h3>
-      <div th:each="ingredient : ${protein}">
-        <input th:field="*{ingredients}" type="checkbox" 
-               th:value="${ingredient.id}"/>
-        <span th:text="${ingredient.name}">INGREDIENT</span><br/>
-      </div>
-      </div>
-
-	  <div class="ingredient-group" id="cheeses">
-      <h3>Choose your cheese:</h3>
-      <div th:each="ingredient : ${cheese}">
-        <input th:field="*{ingredients}" type="checkbox" 
-               th:value="${ingredient.id}"/>
-        <span th:text="${ingredient.name}">INGREDIENT</span><br/>
-      </div>
-      </div>
-
-	  <div class="ingredient-group" id="veggies">
-      <h3>Determine your veggies:</h3>
-      <div th:each="ingredient : ${veggies}">
-        <input th:field="*{ingredients}" type="checkbox" 
-               th:value="${ingredient.id}"/>
-        <span th:text="${ingredient.name}">INGREDIENT</span><br/>
-      </div>
-      </div>
-
-	  <div class="ingredient-group" id="sauces">
-      <h3>Select your sauce:</h3>
-      <div th:each="ingredient : ${sauce}">
-        <input th:field="*{ingredients}" type="checkbox" 
-               th:value="${ingredient.id}"/>
-        <span th:text="${ingredient.name}">INGREDIENT</span><br/>
-      </div>
-      </div>
-      </div>
-
-      <div>
-
-
-      <h3>Name your taco creation:</h3>
-      <input type="text" th:field="*{name}"/>
+      <div class="mb-4">
+		<label for="tacoName" class="form-label"><strong>Name your taco creation:</strong></label>
+		<input type="text" id="tacoName" class="form-control" th:field="*{name}" placeholder="Awesome Taco Name" />
+	  </div>
       <!-- end::all[] -->
       <!--<span class="validationError"
             th:if="${#fields.hasErrors('name')}"
             th:errors="*{name}">Name Error</span>-->
       <!-- tag::all[] -->
-      <br/>
-
-      <button>Submit Your Taco</button>
+	  <div class="d-flex gap-2">
+		<button type="submit" class="btn btn-primary">Submit Your Taco</button>
+		<a th:href="@{/}" class="btn btn-secondary">Back</a>
       </div>
 <!-- tag::closeFormTag[] -->
     </form>
