@@ -49,3 +49,9 @@ body {
 .navbar-brand {
     font-weight: bold;
 }
+
+.validationError {
+    color: red;
+    font-size: 0.875em;
+}
+

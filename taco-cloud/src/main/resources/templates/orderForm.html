@@ -1,0 +1,113 @@
+<!-- tag::allButValidation[] -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+  <head>
+	<meta charset="UTF-8">
+    <title>Order Tacos | Taco Cloud</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+	<!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+  <body class="bg-light">
+
+	<div class="container mt-5">
+		<div class="row justify-content-center">
+			<div class="col-lg-8">
+				<div class="card shadow-sm">
+					<div class="card-body">
+						<h1 class="text-center mb-4">Order your taco creations!</h1>
+						<div class="text-center mb-4">
+	                        <img th:src="@{/images/TacoCloud.png}" class="img-fluid" style="max-height: 100px;" />
+	                    </div>
+						
+						<h4>Your tacos in this order:</h4>
+						<ul class="list-group mb-3">
+	                        <li th:each="taco : ${tacoOrder.tacos}" class="list-group-item">
+	                            <span th:text="${taco.name}">taco name</span>
+	                        </li>
+	                    </ul>
+	                    <div class="mb-4 text-end">
+	                        <a class="btn btn-outline-secondary btn-sm" th:href="@{/design}" id="another">Design another taco</a>
+	                    </div>
+			
+					    <form method="POST" th:action="@{/orders}" th:object="${tacoOrder}">
+					<!-- end::allButValidation[] -->
+					      <div th:if="${#fields.hasErrors()}">
+					        <span class="validationError">
+					        Please correct the problems below and resubmit.
+					        </span>
+					      </div>
+					
+					<!-- tag::allButValidation[] -->
+						  <h4 class="mb-3">Deliver my taco masterpieces to...</h4>
+						  
+						  <div class="mb-3">
+						      <label class="form-label" for="deliveryName">Name:</label>
+						      <input type="text" class="form-control" id="deliveryName" th:field="*{deliveryName}" placeholder="John Doe" />
+						      <div class="validationError" th:if="${#fields.hasErrors('deliveryName')}" th:errors="*{deliveryName}"></div>
+						  </div>
+						
+						  <div class="mb-3">
+						      <label class="form-label" for="deliveryStreet">Street address:</label>
+						      <input type="text" class="form-control" id="deliveryStreet" th:field="*{deliveryStreet}" placeholder="123 Taco St" />
+						      <div class="validationError" th:if="${#fields.hasErrors('deliveryStreet')}" th:errors="*{deliveryStreet}"></div>
+						  </div>
+						
+						  <div class="row">
+	                          <div class="col-md-4 mb-3">
+	                              <label class="form-label" for="deliveryCity">City:</label>
+	                              <input type="text" class="form-control" id="deliveryCity" th:field="*{deliveryCity}" />
+	                              <div class="validationError" th:if="${#fields.hasErrors('deliveryCity')}" th:errors="*{deliveryCity}"></div>
+	                          </div>
+	                          <div class="col-md-4 mb-3">
+	                              <label class="form-label" for="deliveryState">State:</label>
+	                              <input type="text" class="form-control" id="deliveryState" th:field="*{deliveryState}" />
+	                              <div class="validationError" th:if="${#fields.hasErrors('deliveryState')}" th:errors="*{deliveryState}"></div>
+	                          </div>
+	                          <div class="col-md-4 mb-3">
+	                              <label class="form-label" for="deliveryZip">Zip code:</label>
+	                              <input type="text" class="form-control" id="deliveryZip" th:field="*{deliveryZip}" />
+	                              <div class="validationError" th:if="${#fields.hasErrors('deliveryZip')}" th:errors="*{deliveryZip}"></div>
+	                          </div>
+	                      </div>
+						
+						  <h4 class="mt-4 mb-3">Here's how I'll pay...</h4>
+						
+						  <div class="mb-3">
+						      <label class="form-label" for="ccNumber">Credit Card #:</label>
+						      <input type="text" class="form-control" id="ccNumber" th:field="*{ccNumber}" placeholder="1234 5678 9012 3456" />
+						      <div class="validationError" th:if="${#fields.hasErrors('ccNumber')}" th:errors="*{ccNumber}"></div>
+						  </div>
+						
+						  <div class="row">
+						      <div class="col-md-6 mb-3">
+						          <label class="form-label" for="ccExpiration">Expiration:</label>
+						          <input type="text" class="form-control" id="ccExpiration" th:field="*{ccExpiration}" placeholder="MM/YY" />
+						          <div class="validationError" th:if="${#fields.hasErrors('ccExpiration')}" th:errors="*{ccExpiration}"></div>
+						      </div>
+						      <div class="col-md-6 mb-3">
+						          <label class="form-label" for="ccCVV">CVV:</label>
+						          <input type="text" class="form-control" id="ccCVV" th:field="*{ccCVV}" placeholder="123" />
+						          <div class="validationError" th:if="${#fields.hasErrors('ccCVV')}" th:errors="*{ccCVV}"></div>
+						      </div>
+						  </div>
+						
+						  <div class="d-grid mt-4">
+						      <button type="submit" class="btn btn-primary btn-lg">Submit order</button>
+						  </div>
+						  
+					    </form>
+					</div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+	
+  </body>
+</html>
+<!-- end::allButValidation[] -->
