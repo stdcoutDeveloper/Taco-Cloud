@@ -21,10 +21,9 @@
 <!-- tag::formTag[] -->
     <form method="POST" th:object="${taco}" class="mb-5">
     <!-- end::all[] -->
-
-    <!--<span class="validationError"
-          th:if="${#fields.hasErrors('ingredients')}"
-          th:errors="*{ingredients}">Ingredient Error</span>-->
+	<div th:if="${#fields.hasErrors('ingredients')}" class="alert alert-danger"
+		 th:errors="*{ingredients}">
+	</div>
 
     <!-- tag::all[] -->
     <div class="row">
@@ -100,12 +99,15 @@
 
       <div class="mb-4">
 		<label for="tacoName" class="form-label"><strong>Name your taco creation:</strong></label>
-		<input type="text" id="tacoName" class="form-control" th:field="*{name}" placeholder="Awesome Taco Name" />
+		<input type="text"
+               class="form-control"
+               th:classappend="${#fields.hasErrors('name')} ? ' is-invalid' : ''"
+               id="tacoName"
+               th:field="*{name}"
+               placeholder="Awesome Taco Name" />
+        <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
 	  </div>
       <!-- end::all[] -->
-      <!--<span class="validationError"
-            th:if="${#fields.hasErrors('name')}"
-            th:errors="*{name}">Name Error</span>-->
       <!-- tag::all[] -->
 	  <div class="d-flex gap-2">
 		<button type="submit" class="btn btn-primary">Submit Your Taco</button>
