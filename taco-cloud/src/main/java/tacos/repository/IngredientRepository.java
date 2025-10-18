@@ -10,6 +10,8 @@ public interface IngredientRepository {
 
 	Optional<Ingredient> findById(String id);
 
+	// use for both insert and update
+	// assure that the caller gets the latest version of object after saved
 	Ingredient save(Ingredient ingredient);
 
 }
