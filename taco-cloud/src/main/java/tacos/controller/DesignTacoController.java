@@ -1,4 +1,4 @@
-package tacos.web;
+package tacos.controller;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import tacos.domain.Ingredient;
-import tacos.domain.Ingredient.Type;
-import tacos.domain.Taco;
-import tacos.domain.TacoOrder;
+import tacos.model.Ingredient;
+import tacos.model.Taco;
+import tacos.model.TacoOrder;
+import tacos.model.Ingredient.Type;
 
 @Slf4j
 @Controller

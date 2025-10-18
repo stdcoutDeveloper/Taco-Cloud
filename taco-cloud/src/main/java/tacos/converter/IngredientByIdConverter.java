@@ -1,4 +1,4 @@
-package tacos.web.converter;
+package tacos.converter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,8 +6,8 @@ import java.util.Map;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import tacos.domain.Ingredient;
-import tacos.domain.Ingredient.Type;
+import tacos.model.Ingredient;
+import tacos.model.Ingredient.Type;
 
 @Component
 public class IngredientByIdConverter implements Converter<String, Ingredient> {
