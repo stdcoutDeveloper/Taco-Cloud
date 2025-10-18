@@ -1,11 +1,9 @@
 package tacos.controller;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -30,8 +28,11 @@ import tacos.repository.IngredientRepository;
 @SessionAttributes("tacoOrder")
 public class DesignTacoController {
 	
-	@Autowired
-	private IngredientRepository ingredientRepository;
+	private final IngredientRepository ingredientRepo;
+	
+	public DesignTacoController(IngredientRepository ingredientRepo) {
+		this.ingredientRepo = ingredientRepo;
+	}
 	
 	/**
 	 * Populate the Model before handling request (before Controller is called)
@@ -39,7 +40,7 @@ public class DesignTacoController {
 	 */
 	@ModelAttribute
 	public void addIngredientsToModel(Model model) {
-		List<Ingredient> ingredients = StreamSupport.stream(ingredientRepository.findAll().spliterator(), false)
+		List<Ingredient> ingredients = StreamSupport.stream(ingredientRepo.findAll().spliterator(), false)
                 									.collect(Collectors.toList());
 		
 		Type[] types = Ingredient.Type.values();
