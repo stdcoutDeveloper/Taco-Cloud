@@ -1,11 +1,22 @@
 package tacos.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.domain.Persistable;
+import org.springframework.data.relational.core.mapping.Table;
+
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 // Generate getter, setter, constructor, equals, hashCode, toString automatically
 @Data
-public class Ingredient {
+@Table
+@AllArgsConstructor
+@NoArgsConstructor(access=AccessLevel.PRIVATE, force=true)
+public class Ingredient implements Persistable<String> {
 
+	@Id
     private final String id;
     private final String name;
     private final Type type;
@@ -17,5 +28,11 @@ public class Ingredient {
         CHEESE,
         SAUCE
     }
+
+	@Override
+	public boolean isNew() {
+		// TODO Auto-generated method stub
+		return false;
+	}
     
 }
