@@ -31,8 +31,7 @@ public class Ingredient implements Persistable<String> {
 
 	@Override
 	public boolean isNew() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
     
 }
