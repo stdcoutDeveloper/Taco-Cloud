@@ -31,7 +31,7 @@ public class Ingredient implements Persistable<String> {
 
 	@Override
 	public boolean isNew() {
-		return id == null;
+		return true;
 	}
     
 }
