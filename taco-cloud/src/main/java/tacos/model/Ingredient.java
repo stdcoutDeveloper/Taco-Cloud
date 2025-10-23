@@ -17,9 +17,9 @@ import lombok.NoArgsConstructor;
 public class Ingredient implements Persistable<String> {
 
 	@Id
-    private final String id;
-    private final String name;
-    private final Type type;
+	private String id;
+	private String name;
+	private Type type;
 
     public enum Type {
         WRAP,
@@ -31,7 +31,7 @@ public class Ingredient implements Persistable<String> {
 
 	@Override
 	public boolean isNew() {
-		return true;
+		return id == null;
 	}
     
 }

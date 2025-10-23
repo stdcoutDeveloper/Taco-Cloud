@@ -15,7 +15,7 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Data
-@Table("Taco_Order")
+@Table
 public class TacoOrder implements Serializable {
 
 	/**
@@ -26,7 +26,7 @@ public class TacoOrder implements Serializable {
 	@Id
 	private Long id;
 
-	private Date placedAt;
+	private Date placedAt = new Date();
 
 	// delivery info
 	@NotBlank(message="Delivery name is required")
