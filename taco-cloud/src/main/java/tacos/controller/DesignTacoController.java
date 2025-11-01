@@ -19,7 +19,9 @@ import tacos.model.Ingredient;
 import tacos.model.Ingredient.Type;
 import tacos.model.Taco;
 import tacos.model.TacoOrder;
+import tacos.model.TacoUDT;
 import tacos.repository.IngredientRepository;
+import tacos.repository.TacoRepository;
 
 @Slf4j
 @Controller
@@ -30,8 +32,11 @@ public class DesignTacoController {
 	
 	private final IngredientRepository ingredientRepo;
 	
-	public DesignTacoController(IngredientRepository ingredientRepo) {
+	private final TacoRepository tacoRepo;
+	
+	public DesignTacoController(IngredientRepository ingredientRepo, TacoRepository tacoRepo) {
 		this.ingredientRepo = ingredientRepo;
+		this.tacoRepo = tacoRepo;
 	}
 	
 	/**
@@ -80,7 +85,10 @@ public class DesignTacoController {
 			return "design";
 		}
 
-	    tacoOrder.addTaco(taco);
+	    tacoOrder.addTaco(new TacoUDT(taco.getName(), taco.getIngredients()));
+	    
+	    tacoRepo.save(taco);
+	    
 	    log.info("Processing taco: {}", taco);
 
 	    return "redirect:/orders/current";
